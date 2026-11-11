@@ -41,9 +41,6 @@ class Provider:
         # One Provider instance represents one conversation/run.
         self.session_id = str(uuid.uuid4()) if name == 'opencode-go' else None
         key_name, self.url = CONFIG[name]
-        if name == 'openai' and os.getenv('OPENAI_BASE_URL'):
-            # Optional compatible endpoint; Gemini keeps its original adapter.
-            self.url = os.environ['OPENAI_BASE_URL'].rstrip('/') + '/chat/completions'
         self.key = os.getenv(key_name)
         if not self.key:
             raise ValueError(f'Thiếu {key_name}; xem README.md.')
