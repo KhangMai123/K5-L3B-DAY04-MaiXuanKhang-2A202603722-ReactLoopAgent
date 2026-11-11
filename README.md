@@ -1,5 +1,27 @@
 # Lab: Xây dựng Status Investigation Agent
 
+## Bản nộp Mai Xuân Khang — 2A202603722 — K5-L3B
+
+Bản nộp dùng **DeepSeek trực tiếp**, model `deepseek-flash`, endpoint
+`https://api.deepseek.com/chat/completions`. `PROVIDER=openai` chọn adapter
+**OpenAI-compatible**, không có nghĩa kết quả được sinh bởi OpenAI hoặc Gemini.
+`OPENAI_BASE_URL=https://api.deepseek.com` chuyển request của adapter đến DeepSeek;
+`with_env.py` nạp `DEEPSEEK_API_KEY` local vào môi trường subprocess phù hợp.
+
+Gemini đã được thử nhưng eval gặp HTTP 429. Theo yêu cầu của học viên, baseline
+được chạy mới trên DeepSeek trước khi cải tiến. Cả `eval_before.json`,
+`eval_after.json` và `eval_bonus.json` hiện nộp đều dùng DeepSeek; không so điểm
+Gemini với DeepSeek. Main **95.18 → 99.50/100**, bonus **99.80/100**; đủ 22/22,
+22/22 và 10/10 case được chấm. Hạn chế A5, H5 và B10 vẫn được ghi rõ trong NOTES.
+
+Xem [RUNBOOK.md](RUNBOOK.md) để cấu hình/chạy lại trên Windows,
+[NOTES.md](NOTES.md) để đọc bằng chứng và lỗi còn lại,
+[DEFENSE.md](DEFENSE.md) để tự kiểm tra khả năng giải thích code,
+và [evidence/final_review.json](evidence/final_review.json) để kiểm tra lần rà soát cuối.
+**Sử dụng AI:** Có sử dụng AI hỗ trợ triển khai, kiểm thử và biên tập báo cáo.
+Báo cáo dựa trên code, trace và kết quả chạy thực tế. Các phần hướng dẫn của đề
+tiếp tục bên dưới.
+
 > **Hình thức: Bài cá nhân.** Mỗi cá nhân tự làm, tự tạo repo riêng và tự nộp link lên LMS.
 >
 > **Tên repo nộp:** `K5-L3A-DAY04-[HoVaTen]-[MSSV]-ReactLoopAgent` hoặc `K5-L3B-DAY04-[HoVaTen]-[MSSV]-ReactLoopAgent` (thay `[HoVaTen]` và `[MSSV]`, bỏ cả dấu ngoặc vuông) · **Nơi nộp:** [aithucchien.vinuni.edu.vn](https://aithucchien.vinuni.edu.vn)
@@ -59,12 +81,18 @@ Chọn cấu hình khác nếu cần:
 
 | `PROVIDER` | Biến chứa key | `MODEL` |
 |---|---|---|
-| `openai` | `OPENAI_API_KEY` | Tên model OpenAI bạn được cấp quyền dùng. |
+| `openai` | `OPENAI_API_KEY` | OpenAI hoặc endpoint tương thích qua `OPENAI_BASE_URL`; bản nộp dùng DeepSeek (xem RUNBOOK). |
 | `gemini` | `GEMINI_API_KEY` | Tên model Gemini hỗ trợ function calling. |
 | `anthropic` | `ANTHROPIC_API_KEY` | Tên model Claude hỗ trợ tool use. |
 | `openrouter` | `OPENROUTER_API_KEY` | Model ID đầy đủ trên OpenRouter, thường có dạng provider/model. |
 
-Ví dụ chuyển sang Gemini: `export PROVIDER=gemini`, đặt `GEMINI_API_KEY` và `MODEL` phù hợp. Chọn một provider; không cần cả bốn key. File `.env.example` chỉ là mẫu: chương trình **không tự đọc `.env`**. Có thể chạy `cp .env.example .env`, điền key rồi chạy `source .env` trong mỗi terminal mới. Trên Windows, dùng Git Bash để chạy đúng các lệnh này, hoặc thay `python3` bằng `python` và đặt biến bằng `$env:TEN_BIEN='gia_tri'` trong PowerShell. Không commit key hay trace chứa dữ liệu nhạy cảm.
+Các ví dụ provider ở bảng trên là hướng dẫn chung của đề. Bản nộp hiện tại dùng
+DeepSeek theo `.env.example`: copy thành `.env`, điền key local rồi chạy qua
+`python with_env.py run.py "Câu hỏi"`. File mẫu dùng `KEY=VALUE`, không dùng `export`
+hoặc `source .env`. `run.py`/eval runner không tự đọc `.env`; helper làm việc đó.
+Trên máy đang làm lab, thêm `--env .local/deepseek.env` sau `with_env.py`.
+Các lệnh Bash `export` phía trên chỉ phù hợp khi đặt biến trực tiếp trong Bash;
+trong PowerShell dùng `$env:TEN_BIEN='gia_tri'`. Không commit key hay trace nhạy cảm.
 
 Adapter dùng Chat Completions cho OpenAI, Gemini compatibility và OpenRouter; Anthropic dùng Messages API. Nó phục vụ **tool calling cơ bản**, không bao phủ mọi tính năng đặc thù model như extended thinking. Khi provider từ chối model hoặc hết quota, kiểm tra quyền truy cập, model ID và key. Xem tài liệu: [OpenAI](https://developers.openai.com/api/docs/guides/function-calling), [Gemini](https://ai.google.dev/gemini-api/docs/openai), [Anthropic](https://platform.claude.com/docs/en/agents-and-tools/tool-use/how-tool-use-works), [OpenRouter](https://openrouter.ai/docs/guides/features/tool-calling).
 
@@ -98,9 +126,9 @@ Trong bài lab, *agent loop* là vòng LLM → tool → kết quả. Khi dùng c
 
 | Chủ đề | Tài liệu | Bạn sẽ tìm thấy gì? |
 |---|---|---|
-| Instructions | [Codex: AGENTS.md](https://learn.chatgpt.com/docs/agent-configuration/agents-md) · [Claude Code: project instructions](https://code.claude.com/docs/en/memory) | Cách cung cấp quy ước dự án và lệnh kiểm tra cho coding agent. |
+| Instructions | [AGENTS.md](https://learn.chatgpt.com/docs/agent-configuration/agents-md) · [Claude Code: project instructions](https://code.claude.com/docs/en/memory) | Cách cung cấp quy ước dự án và lệnh kiểm tra cho coding agent. |
 | Skills | [OpenAI: Build skills](https://learn.chatgpt.com/docs/build-skills) · [Claude Code: Skills](https://code.claude.com/docs/en/skills) | Cách đóng gói một workflow có thể dùng lại, ví dụ review code hoặc debug. |
-| Hooks | [Codex: Hooks](https://learn.chatgpt.com/docs/hooks) · [Claude Code: Hooks](https://code.claude.com/docs/en/hooks) | Cách chạy kiểm tra tại các sự kiện như trước/sau tool call hoặc khi agent kết thúc. |
+| Hooks | [Hooks](https://learn.chatgpt.com/docs/hooks) · [Claude Code: Hooks](https://code.claude.com/docs/en/hooks) | Cách chạy kiểm tra tại các sự kiện như trước/sau tool call hoặc khi agent kết thúc. |
 | Workflow | [GitHub Spec Kit](https://github.github.com/spec-kit/quickstart) · [Superpowers](https://github.com/obra/superpowers) | Hai ví dụ workflow: đi từ yêu cầu đến kế hoạch, implementation và kiểm chứng. Superpowers là dự án cộng đồng. |
 | Vòng lặp tự động | [Ralph: bài viết gốc](https://ghuntley.com/ralph/) · [Claude Code Ralph Loop plugin](https://github.com/anthropics/claude-plugins-official/blob/main/plugins/ralph-loop/README.md) | Ví dụ cho agent tiếp tục lặp trên một nhiệm vụ; plugin dùng Stop hook và là một implementation riêng của ý tưởng này. |
 | Thiết kế môi trường | [OpenAI: Harness engineering](https://openai.com/index/harness-engineering/) | Vai trò của tests, feedback và môi trường khi giao công việc cho coding agent. |
