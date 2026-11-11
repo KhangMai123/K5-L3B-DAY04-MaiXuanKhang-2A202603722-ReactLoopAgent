@@ -4,6 +4,11 @@ Mai Xuân Khang — 2A202603722 — K5-L3B.
 
 Bài dùng Python standard library, không cần cài thêm package hoặc framework agent.
 
+Repo đã tích hợp commit `147982b` từ VinUni, bổ sung provider `opencode-go`.
+README, `.env.example`, các lựa chọn CLI và tests liên quan dùng bản upstream mới.
+OpenCode Go được kiểm tra offline qua tests của đề; cấu hình chạy eval của bài
+vẫn là DeepSeek trực tiếp. Các helper có sẵn giữ nguyên, không bổ sung helper mới.
+
 ## Cấu hình đang dùng
 
 Sau lỗi HTTP 429 của Gemini, cấu hình được chuyển sang **DeepSeek trực tiếp**.
@@ -62,10 +67,10 @@ gia so sánh DeepSeek before/after. Kết quả OpenCode Go lỗi xác thực c�
 được dùng để chấm bài. `evidence/final_review.json` ghi kết quả tests, source hash,
 protected-file/secret checks và danh sách commit được rà soát.
 
-Rà soát cuối không sửa code hoặc system prompt và không chạy lại/chỉnh tay eval.
-A5 còn lỗi diễn giải 5/50 ở cả hai lần chạy; B10 có claim đã xử lý injection thiếu
-bằng chứng; H5 chỉ xác minh bằng details hai incident. Không trình bày các lỗi
-này như đã được khắc phục. Điểm cao không bảo đảm mọi câu trong answer đều đúng.
+Sau cập nhật upstream, main after và bonus được chạy lại bằng model đã khóa;
+baseline giữ nguyên. NOTES và manifest phản ánh kết quả của phiên bản đã tích hợp.
+Không chỉnh tay eval. Điểm cao không bảo đảm mọi câu trong answer đều đúng;
+cần đối chiếu các claim về số incident, scope và injection với trace của chính run.
 
 `.env`, `*.env`, `.local/`, cache và kết quả chạy lại `eval_results*.json` được
 ignore. Không đưa key vào câu lệnh, source, trace hoặc tài liệu. Chỉ commit các

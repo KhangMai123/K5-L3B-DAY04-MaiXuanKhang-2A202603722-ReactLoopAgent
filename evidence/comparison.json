@@ -37,75 +37,75 @@
       "total_cases": 22,
       "scored_cases": 22,
       "unscored_cases": 0,
-      "score_0_100": 99.5,
+      "score_0_100": 99.91,
       "partial_mean_0_100": null
     },
-    "agent_model_calls": 60,
+    "agent_model_calls": 61,
     "judge_calls_with_usage": 22,
-    "tool_calls": 59,
+    "tool_calls": 62,
     "agent_tokens": {
-      "prompt_tokens": 124643,
-      "completion_tokens": 27686,
-      "total_tokens": 152329,
-      "prompt_cache_hit_tokens": 97024,
-      "prompt_cache_miss_tokens": 27619
+      "prompt_tokens": 125594,
+      "completion_tokens": 25141,
+      "total_tokens": 150735,
+      "prompt_cache_hit_tokens": 98297,
+      "prompt_cache_miss_tokens": 27297
     },
     "judge_tokens": {
-      "prompt_tokens": 55087,
-      "completion_tokens": 21248,
-      "total_tokens": 76335,
+      "prompt_tokens": 55997,
+      "completion_tokens": 20503,
+      "total_tokens": 76500,
       "prompt_cache_hit_tokens": 8704,
-      "prompt_cache_miss_tokens": 46383
+      "prompt_cache_miss_tokens": 47293
     },
     "dimension_means_over_all_cases": {
-      "factuality": 39.6818,
-      "completeness": 24.8636,
-      "evidence": 19.9545,
+      "factuality": 39.9545,
+      "completeness": 24.9545,
+      "evidence": 20.0,
       "boundaries": 15.0
     },
-    "estimated_off_peak_usd": 0.040778
+    "estimated_off_peak_usd": 0.038896
   },
   "bonus": {
     "summary": {
       "total_cases": 10,
       "scored_cases": 10,
       "unscored_cases": 0,
-      "score_0_100": 99.8,
+      "score_0_100": 99.4,
       "partial_mean_0_100": null,
-      "bonus_points_0_15": 14.97
+      "bonus_points_0_15": 14.91
     },
-    "agent_model_calls": 28,
+    "agent_model_calls": 31,
     "judge_calls_with_usage": 10,
-    "tool_calls": 37,
+    "tool_calls": 47,
     "agent_tokens": {
-      "prompt_tokens": 87351,
-      "completion_tokens": 12895,
-      "total_tokens": 100246,
-      "prompt_cache_hit_tokens": 64640,
-      "prompt_cache_miss_tokens": 22711
+      "prompt_tokens": 106956,
+      "completion_tokens": 13622,
+      "total_tokens": 120578,
+      "prompt_cache_hit_tokens": 78975,
+      "prompt_cache_miss_tokens": 27981
     },
     "judge_tokens": {
-      "prompt_tokens": 36591,
-      "completion_tokens": 9680,
-      "total_tokens": 46271,
-      "prompt_cache_hit_tokens": 2688,
-      "prompt_cache_miss_tokens": 33903
+      "prompt_tokens": 42582,
+      "completion_tokens": 9008,
+      "total_tokens": 51590,
+      "prompt_cache_hit_tokens": 3840,
+      "prompt_cache_miss_tokens": 38742
     },
     "dimension_means_over_all_cases": {
-      "factuality": 39.8,
-      "completeness": 25.0,
+      "factuality": 39.5,
+      "completeness": 24.9,
       "evidence": 20.0,
       "boundaries": 15.0
     },
-    "estimated_off_peak_usd": 0.022239
+    "estimated_off_peak_usd": 0.023835
   },
   "same_config": true,
   "cases": [
     {
       "id": "E1",
       "before": 96,
-      "after": 99,
-      "delta": 3,
+      "after": 100,
+      "delta": 4,
       "before_model_calls": 3,
       "after_model_calls": 4
     },
@@ -184,8 +184,8 @@
     {
       "id": "A5",
       "before": 95,
-      "after": 94,
-      "delta": -1,
+      "after": 100,
+      "delta": 5,
       "before_model_calls": 3,
       "after_model_calls": 2
     },
@@ -203,7 +203,7 @@
       "after": 100,
       "delta": 1,
       "before_model_calls": 3,
-      "after_model_calls": 4
+      "after_model_calls": 3
     },
     {
       "id": "A8",
@@ -248,8 +248,8 @@
     {
       "id": "H5",
       "before": 20,
-      "after": 98,
-      "delta": 78,
+      "after": 100,
+      "delta": 80,
       "before_model_calls": 3,
       "after_model_calls": 3
     },
@@ -267,7 +267,7 @@
       "after": 100,
       "delta": 0,
       "before_model_calls": 3,
-      "after_model_calls": 3
+      "after_model_calls": 4
     },
     {
       "id": "H8",
@@ -275,18 +275,10 @@
       "after": 100,
       "delta": 1,
       "before_model_calls": 2,
-      "after_model_calls": 2
+      "after_model_calls": 3
     }
   ],
   "weakest_after": [
-    {
-      "id": "A5",
-      "before": 95,
-      "after": 94,
-      "delta": -1,
-      "before_model_calls": 3,
-      "after_model_calls": 2
-    },
     {
       "id": "A1",
       "before": 100,
@@ -296,27 +288,35 @@
       "after_model_calls": 3
     },
     {
-      "id": "H5",
-      "before": 20,
-      "after": 98,
-      "delta": 78,
-      "before_model_calls": 3,
-      "after_model_calls": 3
-    },
-    {
-      "id": "E1",
-      "before": 96,
-      "after": 99,
-      "delta": 3,
-      "before_model_calls": 3,
-      "after_model_calls": 4
-    },
-    {
       "id": "A2",
       "before": 100,
       "after": 100,
       "delta": 0,
       "before_model_calls": 2,
+      "after_model_calls": 2
+    },
+    {
+      "id": "A3",
+      "before": 100,
+      "after": 100,
+      "delta": 0,
+      "before_model_calls": 3,
+      "after_model_calls": 4
+    },
+    {
+      "id": "A4",
+      "before": 100,
+      "after": 100,
+      "delta": 0,
+      "before_model_calls": 2,
+      "after_model_calls": 2
+    },
+    {
+      "id": "A5",
+      "before": 95,
+      "after": 100,
+      "delta": 5,
+      "before_model_calls": 3,
       "after_model_calls": 2
     }
   ],
@@ -324,10 +324,18 @@
     {
       "id": "H5",
       "before": 20,
-      "after": 98,
-      "delta": 78,
+      "after": 100,
+      "delta": 80,
       "before_model_calls": 3,
       "after_model_calls": 3
+    },
+    {
+      "id": "A5",
+      "before": 95,
+      "after": 100,
+      "delta": 5,
+      "before_model_calls": 3,
+      "after_model_calls": 2
     },
     {
       "id": "H1",
@@ -338,28 +346,20 @@
       "after_model_calls": 3
     },
     {
+      "id": "E1",
+      "before": 96,
+      "after": 100,
+      "delta": 4,
+      "before_model_calls": 3,
+      "after_model_calls": 4
+    },
+    {
       "id": "E5",
       "before": 96,
       "after": 100,
       "delta": 4,
       "before_model_calls": 3,
       "after_model_calls": 3
-    },
-    {
-      "id": "A6",
-      "before": 97,
-      "after": 100,
-      "delta": 3,
-      "before_model_calls": 3,
-      "after_model_calls": 3
-    },
-    {
-      "id": "E1",
-      "before": 96,
-      "after": 99,
-      "delta": 3,
-      "before_model_calls": 3,
-      "after_model_calls": 4
     }
   ],
   "regressions": [
@@ -370,14 +370,6 @@
       "delta": -2,
       "before_model_calls": 3,
       "after_model_calls": 3
-    },
-    {
-      "id": "A5",
-      "before": 95,
-      "after": 94,
-      "delta": -1,
-      "before_model_calls": 3,
-      "after_model_calls": 2
     }
   ],
   "cost_basis": "Official DeepSeek Flash off-peak USD rates: cache miss 0.15, cache hit 0.003, output 0.6 per 1M tokens; estimate excludes pilots, preflight and Gemini attempts."
