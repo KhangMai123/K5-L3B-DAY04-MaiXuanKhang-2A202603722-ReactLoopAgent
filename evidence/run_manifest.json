@@ -38,5 +38,42 @@
       "written_utc": "2026-11-11T10:49:47.169070+00:00"
     }
   },
-  "final_review_utc": "2026-11-11T10:56:31.209976+00:00"
+  "final_review_utc": "2026-11-11T10:56:31.209976+00:00",
+  "hash_policy": {
+    "raw_hashes": "Original SHA256 values describe the exact Windows working files used during evaluation. These raw hashes and eval files are unchanged.",
+    "repository_hashes": "Git stores text as LF under the existing autocrlf setting. repository_lf_sha256 hashes those committed bytes. Equality was checked after CRLF-to-LF normalization only.",
+    "baseline_source_mapping": "inputs.agent.py is the pre-improvement source saved as evidence/agent_before.py; final_agent_sha256 describes final agent.py."
+  },
+  "repository_lf_sha256": {
+    "RUBRIC.md": "dea4f834d1406343e77f6e5a13f7b3ad95ce9c419c5d2403659c78c28c752c06",
+    "agent.py": "52b98b0a37b8507203d9fb1662f2d54de7d35401388bd601a8eb65fa705c0725",
+    "bonus/__init__.py": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+    "bonus/cases.json": "20aee5e8aec1a1fd6d75bd5c310d1a4d59a3865ba9fdcab236a1da8db5d9bf8f",
+    "bonus/fixtures/digitalocean.json": "6aba084edb60100c37bc02c022584202f7355916e872ec211f61d31bba69641a",
+    "bonus/fixtures/npm.json": "9d61a1776c7406001222a941d5873364c743b170f8cb31c2d8bb8fd3b5795dad",
+    "bonus/fixtures/vercel.json": "8f84793557582fa81bdf47b45d24187de813f84ff71beabb443a820322381a4f",
+    "bonus/test_agent.py": "64dcd86a12b5a10cd5fd1cb1d48cf23e35e8b7cb7aecb3f73e93b3531846bcda",
+    "bonus/tools.py": "1a552c6e1aba591a400706852a6df8fed6901ec4301c1ad7eda12eee452bcf80",
+    "eval_after.json": "942d36d28c6e51971d0bb9ae6b499d04bc57ff28a096a680d499f21f2651af02",
+    "eval_before.json": "d923d48d440168cf79a9c2acfa18d973af0457d6ba97424b398f26070de269e6",
+    "eval_bonus.json": "4ff64ac0e2c83321c473c2f80b78761d71e54e252ccac34927f41206fcb89f9f",
+    "evals/cases.json": "3070f2dff24d9518b690213c280a318ff880931ef042603d7371f4280b930e34",
+    "evals/grading.py": "290d342cf40c49926bd635a8046ffb6106321821e3d68ce4286b08878f3c26bf",
+    "evals/run_evals.py": "61765fac6e12eec093641af953f8f6b3130244085570475bd858b9f7daf70da9",
+    "evals/scenarios.py": "019de84221bc343299acf596cfddc033bd24fa064df0c30c03f36e75fe1c1ef2",
+    "evidence/agent_before.py": "8d0ad9e6c3ff3906eb5202beacec32ed3041471eecac4d018417089473eccc9d",
+    "fixtures/cloudflare.json": "896e753ad1ff6d67d5817781a487be597335dc5c124bbf0328098738bb202ab4",
+    "fixtures/github.json": "c4b72f0ab397fa72702908dc1d73aa893af66fff158b3b1bcabf223afb792ad7",
+    "providers.py": "006008b89c2e3977b9cfa0f59c1a79f3fd848b79a027d7a5a6c26188aac755b1",
+    "run.py": "0df79e45562f31bb3a04c9a3ca0f20c340581b63d5f02ae386b922351557388b",
+    "status_tools.py": "015c860a077526580da312dd68560e4e2ace0df2f28a8743a72172e353ba8f3d",
+    "tests/test_agent_guards.py": "a0a4dcecd1c11c21c0629bbbb320094863023c68f3576961be2d3b26d0439d70",
+    "tests/test_agent_robustness.py": "b8d2fdab2dd3901d1382474e31abe44513daeed3452013cfe188fa890670d65c",
+    "tests/test_bonus.py": "8a9258c2c952712c6d8eb3528829c7523017d757ca66b483dc850b54eb45b6ed",
+    "tests/test_grading.py": "8e88124543ee4c259bbdba075e2a7c59367e3787859c5b8a56462a09527d8c2a",
+    "tests/test_lab.py": "2898cbdea1aeb6c72a2b5c51741b60be280b7f9dbc7641322065f421265cfa7e",
+    "tests/test_provider_endpoint.py": "06618b18ede1d61e8f74b202bd1d3fdfa0aeaf421198e7489af0e5c4c63bc73e",
+    "tests/test_validation.py": "e5ed5c212b4f63790d529496be85ccebfdff6fc1b99b99b79b0767eb5ce87a76",
+    "with_env.py": "21d64b9273d7585ce8c89ade2d06a677cbea700dc198e2e49a158ed7880ca3ca"
+  }
 }

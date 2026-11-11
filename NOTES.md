@@ -127,6 +127,10 @@ Hai file có config giống hệt: adapter `openai`, agent/judge `deepseek-flash
 main max_steps=8, dataset core, snapshot cố định. Endpoint thực tế:
 `https://api.deepseek.com/chat/completions`. Hash dữ liệu/source và SHA baseline
 ở `evidence/run_manifest.json`; bản code trước ở `evidence/agent_before.py`.
+Hash gốc trong manifest được tính trên file Windows CRLF tại lúc chạy. Git
+chuẩn hóa xuống dòng thành LF khi commit; `repository_lf_sha256` bổ sung hash
+của bản lưu trong Git. Hai bản chỉ khác ký tự xuống dòng, không thay đổi code
+hay dữ liệu eval; các hash gốc và file baseline local được giữ nguyên.
 Mỗi bộ có 22 unique case IDs, 22 scored, không unscored. Kết quả Gemini lỗi 429
 được giữ riêng nguyên vẹn, không tham gia bảng này.
 
